@@ -6,25 +6,25 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SpotifyService {
 
-  artistas:any [] = [];
+  artistas: any[] = [];
 
-  constructor(public http: HttpClient ) {
+  constructor(public http: HttpClient) {
     console.log('en el service');
-   }
+  }
 
-   getArtistas(){
-     let uri = 'https://api.spotify.com/v1/search?query=metallica&type=artist&market=US&offset=0&limit=20';
-     let headers = new HttpHeaders({
-          'authorization': 'Bearer BQDNYgLiX1u1SH4pAAw3kSqZt7_lRiAtJichLcVBNpvBPn_aQJSULrX6-jtshhlw3VGSKHySCrN6XHqx1y8'
-       });
-     return this.http.get(uri, {headers :headers})
-            .map((respuesta : any) => {
-              this.artistas = respuesta.artists.items
-              return   this.artistas;
+  getArtistas() {
+    const uri = 'https://api.spotify.com/v1/search?query=metallica&type=artist&market=US&offset=0&limit=20';
+    const headers = new HttpHeaders({
+      'authorization': 'Bearer BQBUhVMohfB3BpAqSURzZEyZAMXyVmnc48xYYKvKbHyO1C2vE-aRxUZH0kpmwA1ho-G-T9mn1xn4wSmPHog'
+    });
+    return this.http.get(uri, { headers: headers })
+      .map((respuesta: any) => {
+        this.artistas = respuesta.artists.items;
+        return this.artistas;
 
-            })
-     ;
+      })
+      ;
 
-   }
+  }
 
 }
