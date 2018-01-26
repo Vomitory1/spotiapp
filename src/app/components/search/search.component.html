@@ -7,8 +7,15 @@
     </div>
 
     <div class="col-md-9" *ngIf="termino">
-      <h1>{{termino}} </h1>
+      <h1 class="text-capitalize">{{termino}} </h1>
       <hr>
+
+      <ul>
+        <li *ngFor="let artista of _spotify.artistas">
+            {{ artista.name }}
+        </li>
+
+      </ul>
     </div>
 
   </div>

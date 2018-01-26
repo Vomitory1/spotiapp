@@ -12,10 +12,10 @@ export class SpotifyService {
     console.log('en el service');
   }
 
-  getArtistas() {
-    const uri = 'https://api.spotify.com/v1/search?query=metallica&type=artist&market=US&offset=0&limit=20';
+  getArtistas(termino: string) {
+    const uri = `https://api.spotify.com/v1/search?query=${ termino }&type=artist&market=US&offset=0&limit=20`;
     const headers = new HttpHeaders({
-      'authorization': 'Bearer BQBUhVMohfB3BpAqSURzZEyZAMXyVmnc48xYYKvKbHyO1C2vE-aRxUZH0kpmwA1ho-G-T9mn1xn4wSmPHog'
+      'authorization': 'Bearer BQBaCpmY5GQGDmH-wFbJXLQeesrSARhjE6tHgBkj1S2BVRL1E1Kmj_xTUJ4XajaYmJHo6miMyEcWHqak89U'
     });
     return this.http.get(uri, { headers: headers })
       .map((respuesta: any) => {
