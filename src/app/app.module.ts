@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { APP_ROUTING } from './app.routes';
+import { SinfotoPipe } from './pipes/sinfoto.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { APP_ROUTING } from './app.routes';
     AppComponent,
     HomeComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    SinfotoPipe
   ],
   imports: [
     BrowserModule,
