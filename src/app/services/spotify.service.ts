@@ -31,7 +31,6 @@ export class SpotifyService {
   }
 
   getArtistas(termino: string, token: string) {
-    console.log('en el token' + token);
     const uri = `https://api.spotify.com/v1/search?query=${termino}&type=artist&market=US&offset=0&limit=20`;
     const headers = new HttpHeaders({
       'authorization': `Bearer ${token}`

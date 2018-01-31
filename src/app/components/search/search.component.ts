@@ -21,7 +21,7 @@ export class SearchComponent {
       return;
     }
     this._spotify.getToken().subscribe(respuesta => {
-      console.log(respuesta.access_token);
+
       this.access_token = respuesta.access_token;
     });
 
