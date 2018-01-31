@@ -9,6 +9,7 @@ import { SpotifyService } from '../../services/spotify.service';
 export class SearchComponent {
 
   termino = '';
+  access_token = '';
 
   // Inyeccion del servicio spotify
   constructor(public _spotify: SpotifyService) {
@@ -19,7 +20,12 @@ export class SearchComponent {
     if (this.termino.length === 0) {
       return;
     }
-    this._spotify.getArtistas(this.termino).subscribe(respuesta => {
+    this._spotify.getToken().subscribe(respuesta => {
+      console.log(respuesta.access_token);
+      this.access_token = respuesta.access_token;
+    });
+
+    this._spotify.getArtistas(this.termino, this.access_token).subscribe(respuesta => {
       console.log(respuesta);
     });
   }
