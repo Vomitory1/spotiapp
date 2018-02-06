@@ -34,16 +34,16 @@ export class SpotifyService {
 
   getArtistas(termino: string, token: string) {
     const uri = this.urlSpotify + `search?query=${termino}&type=artist&market=US&offset=0&limit=20`;
-    return this.http.get(uri, { headers:  this.getHeaders(token) });
-  }
-
-  getArtista(id: string, token: string) {
-    const uri = this.urlSpotify + `artists/${id}`;
     return this.http.get(uri, { headers: this.getHeaders(token) })
       .map((respuesta: any) => {
         this.artistas = respuesta.artists.items;
         return this.artistas;
       });
+  }
+
+  getArtista(id: string, token: string) {
+    const uri = this.urlSpotify + `artists/${id}`;
+    return this.http.get(uri, { headers: this.getHeaders(token) });
   }
 
   private getHeaders(token: string): HttpHeaders {
