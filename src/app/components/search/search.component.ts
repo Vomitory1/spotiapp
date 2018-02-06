@@ -16,17 +16,17 @@ export class SearchComponent {
 
   }
 
-  buscarArtista() {
+  buscarArtistas() {
     if (this.termino.length === 0) {
       return;
     }
-    this._spotify.getToken().subscribe(respuesta => {
-      this.access_token = respuesta.access_token;
-    });
-
-    this._spotify.getArtistas(this.termino, this.access_token).subscribe(respuesta => {
-      console.log(respuesta);
-    });
+    this._spotify.getToken().
+      subscribe(respuesta => {
+        this._spotify.getArtistas(this.termino, respuesta.access_token).
+          subscribe(res => {
+            console.log(res);
+          });
+      });
   }
 
   // ngOnInit() {
