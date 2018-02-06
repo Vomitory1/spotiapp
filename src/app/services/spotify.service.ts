@@ -46,6 +46,11 @@ export class SpotifyService {
     return this.http.get(uri, { headers: this.getHeaders(token) });
   }
 
+  getTop(id: string, token: string) {
+    const uri = this.urlSpotify + `artists/${id}/top-tracks?country=US`;
+    return this.http.get(uri, { headers: this.getHeaders(token) });
+  }
+
   private getHeaders(token: string): HttpHeaders {
     const headers = new HttpHeaders({
       'authorization': `Bearer ${token}`
