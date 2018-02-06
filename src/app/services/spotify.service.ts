@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { HttpHeaderResponse } from '@angular/common/http/src/response';
 
 
 
@@ -10,6 +11,7 @@ export class SpotifyService {
 
   artistas: any[] = [];
   access_token: string;
+  urlSpotify = 'https://api.spotify.com/v1/';
 
 
   constructor(public http: HttpClient) {
@@ -31,15 +33,24 @@ export class SpotifyService {
   }
 
   getArtistas(termino: string, token: string) {
-    const uri = `https://api.spotify.com/v1/search?query=${termino}&type=artist&market=US&offset=0&limit=20`;
-    const headers = new HttpHeaders({
-      'authorization': `Bearer ${token}`
-    });
-    return this.http.get(uri, { headers: headers })
+    const uri = this.urlSpotify + `search?query=${termino}&type=artist&market=US&offset=0&limit=20`;
+    return this.http.get(uri, { headers:  this.getHeaders(token) });
+  }
+
+  getArtista(id: string, token: string) {
+    const uri = this.urlSpotify + `artists/${id}`;
+    return this.http.get(uri, { headers: this.getHeaders(token) })
       .map((respuesta: any) => {
         this.artistas = respuesta.artists.items;
         return this.artistas;
       });
+  }
+
+  private getHeaders(token: string): HttpHeaders {
+    const headers = new HttpHeaders({
+      'authorization': `Bearer ${token}`
+    });
+    return headers;
   }
 
 }

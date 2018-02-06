@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './artist.component.html'
 })
 export class ArtistComponent implements OnInit {
+  access_token = '';
 
   constructor(private activatedRoute: ActivatedRoute, public _spotify: SpotifyService) {
 
@@ -19,6 +20,13 @@ export class ArtistComponent implements OnInit {
       .subscribe(id => {
         console.log('en artist');
         console.log(id);
+        this._spotify.getToken().subscribe(respuesta => {
+          this.access_token = respuesta.access_token;
+        });
+        this._spotify.getArtista(id, this.access_token).subscribe(
+           artista => {
+              console.log(artista);
+           } );
       });
   }
 
