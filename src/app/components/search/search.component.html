@@ -3,7 +3,7 @@
 
     <div class="col-md-3">
       <label for="termino">Buscar artista</label>
-      <input type="text" placeholder="Busque artista..." class="form-control" [(ngModel)]="termino" (keyup)="buscarArtistas()">
+      <input type="text" #input autofocus placeholder="Busque artista..." class="form-control" [(ngModel)]="termino" (keyup)="buscarArtistas()">
     </div>
 
     <div class="col-md-9" *ngIf="termino">
